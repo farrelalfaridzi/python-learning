@@ -11,6 +11,7 @@
 # - Boolean
 
 inventory = []
+daftar_monster = []
 player = {
     "nama" : "Farrel",
     "hp" : 100,
@@ -18,40 +19,44 @@ player = {
     "level" : 1,
     "exp" : 0
 }
-monster = {
-    "nama" : "Goblin",
-    "hp" : 50,
-    "damage" : 10
-}
+
+monster_aktif = None
+
 import random
 def attack():
     return random.randint(20, 30)
 def heal():
     return random.randint(10, 20)
-def status(player, monster):
+def status(player, monster_aktif):
     print("===STATUS===")
     print("Nama :", player["nama"])
     print("HP :", player["hp"])
     print("Gold :", player["gold"])
     print("Level :", player["level"])
     print("EXP :", player["exp"])
-    print("Monster :", monster["nama"])
-    print("HP Monster :", monster["hp"])
+    print("Monster :", monster_aktif["nama"])
+    print("HP Monster :", monster_aktif["hp"])
     print("============")
 
-while player["hp"] > 0 and monster["hp"] > 0:
+while True:
     print("===ACTION===")
     print("1. attack")
     print("2. heal")
     print("3. inventory")
     print("4. status")
     print("5. shop")
-    print("6. keluar")
+    print("6. tambah monster")
+    print("7. lihat monster")
+    print("8. pilih monster")
+    print("9. keluar")
     print("============")
     pilih = input("pilihan :")
     if pilih == "4":
-        status(player, monster)
-    elif pilih == "6":
+        if monster_aktif == None:
+            print("silahkan pilih monster terlebih dahulu")
+        else :
+            status(player, monster_aktif)
+    elif pilih == "9":
         print("terimakasih...")
         break
     elif pilih == "2":
@@ -59,29 +64,32 @@ while player["hp"] > 0 and monster["hp"] > 0:
         print("player berhasil di heal")
         print("HP :", player["hp"])
     elif pilih == "1":
-        damage = attack()
-        print("Damage :", damage)
-        monster["hp"] -= damage
-        print("HP", monster["nama"],":",monster["hp"])
-        if monster["hp"] <= 0:
-            print("YOU WIN!")
-            break
-        #monster
-        print("monster menyerang balik")
-        player["hp"] -= monster["damage"]
-        print("Damage monster :", monster["damage"])
-        if player["hp"] <= 0:
-            print("Game over")
-            break
-        player["gold"] += 15
-        print("Gold :", player["gold"])
-        player["exp"] += 10
-        print("EXP :", player["exp"])
-        if player["exp"] >= 30:
-            player["level"] += 1
-            player["exp"] -= 30
-            print("Level up")
-            print("level :", player["level"])
+        if monster_aktif == None:
+            print("silahkan pilih monster terlebih dahulu")
+        else :
+            damage = attack()
+            print("Damage :", damage)
+            monster_aktif["hp"] -= damage
+            print("HP", monster_aktif["nama"],":",monster_aktif["hp"])
+            if monster_aktif["hp"] <= 0:
+                print("YOU WIN!")
+                break
+            #monster
+            print("monster menyerang balik")
+            player["hp"] -= monster_aktif["damage"]
+            print("Damage monster :", monster_aktif["damage"])
+            if player["hp"] <= 0:
+                print("Game over")
+                break
+            player["gold"] += 15
+            print("Gold :", player["gold"])
+            player["exp"] += 10
+            print("EXP :", player["exp"])
+            if player["exp"] >= 30:
+                player["level"] += 1
+                player["exp"] -= 30
+                print("Level up")
+                print("level :", player["level"])
     elif pilih == "3":
         if len(inventory) == 0:
             print("iventory kosong")
@@ -130,3 +138,44 @@ while player["hp"] > 0 and monster["hp"] > 0:
             elif pilih_shop == "2":
                 print("keluar shop...")
                 break
+    elif pilih == "6":
+        monster = {
+            "nama" : "",
+            "hp" : 0,
+            "damage" : 0
+        }
+        nama_monster = input("Nama :")
+        monster["nama"] = nama_monster
+        hp_monster = int(input("HP monster :"))
+        monster["hp"] = hp_monster
+        damage_monster = int(input("Damage monster :"))
+        monster["damage"] = damage_monster
+        daftar_monster.append(monster)
+        print("monster berhasil ditambah")
+        print(monster["nama"],"|","HP :", monster["hp"],"|","Damage :",monster["damage"])
+    elif pilih == "7":
+        if len(daftar_monster) == 0:
+            print("tidak ada monster")
+        else:
+            for item in daftar_monster:
+                print(item["nama"],"|","HP :",item["hp"],"|","Damage",item["damage"])
+    elif pilih == "8":
+        if len(daftar_monster) == 0:
+            print("silahkan tambah monster terlebih dahulu")
+        else:
+            nomor = 0
+            print("===PILIH MONSTER===")
+            for item in daftar_monster:
+                nomor += 1
+                print(nomor, item["nama"])
+            print("===================")
+            pilih_monster = int(input("pilih angka monster :"))
+            if pilih_monster > len(daftar_monster) or pilih_monster < 1:
+                print("angka tidak valid")
+            else:
+                pilih_monster -= 1
+                print("monster dipilih :")
+                print(daftar_monster[pilih_monster]["nama"])
+                print("HP :",daftar_monster[pilih_monster]["hp"])
+                print("Damage :",daftar_monster[pilih_monster]["damage"])
+                monster_aktif = daftar_monster[pilih_monster]
