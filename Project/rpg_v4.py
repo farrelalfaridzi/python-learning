@@ -45,6 +45,13 @@ def status(player, monster_aktif):
     print("Monster :", monster_aktif["nama"])
     print("HP Monster :", monster_aktif["hp"])
     print("============")
+def spawn_monster():
+    monster_random = {
+            "nama" : random.choice(nama_random_monster),
+            "hp" : random.randint(50, 100),
+            "damage" : random.randint(5, 20)
+        }
+    return monster_random
 
 while True:
     print("===ACTION===")
@@ -199,13 +206,9 @@ while True:
                 print("Damage :",daftar_monster[pilih_monster]["damage"])
                 monster_aktif = daftar_monster[pilih_monster]
     elif pilih == "9":
-        monster_random = {
-            "nama" : random.choice(nama_random_monster),
-            "hp" : random.randint(50, 100),
-            "damage" : random.randint(5, 20)
-        }
+        monster_baru = spawn_monster
         print("monster dibuat")
-        print(monster_random["nama"],"|","HP :", monster_random["hp"],"|","Damage :", monster_random["damage"])
-        daftar_monster.append(monster_random)
+        print(monster_baru["nama"],"|","HP :", monster_baru["hp"],"|","Damage :", monster_baru["damage"])
+        daftar_monster.append(monster_baru)
     else:
         print("tidak valid")
