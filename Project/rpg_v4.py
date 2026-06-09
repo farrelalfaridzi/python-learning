@@ -73,7 +73,18 @@ while True:
             print("HP", monster_aktif["nama"],":",monster_aktif["hp"])
             if monster_aktif["hp"] <= 0:
                 print("YOU WIN!")
-                break
+                player["gold"] += 15
+                print("Gold :", player["gold"])
+                player["exp"] += 10
+                print("EXP :", player["exp"])
+                if player["exp"] >= 30:
+                    player["level"] += 1
+                    player["exp"] -= 30
+                    print("Level up")
+                    print("level :", player["level"])
+                daftar_monster.remove(monster_aktif)
+                monster_aktif = None
+                continue
             #monster
             print("monster menyerang balik")
             player["hp"] -= monster_aktif["damage"]
@@ -81,15 +92,6 @@ while True:
             if player["hp"] <= 0:
                 print("Game over")
                 break
-            player["gold"] += 15
-            print("Gold :", player["gold"])
-            player["exp"] += 10
-            print("EXP :", player["exp"])
-            if player["exp"] >= 30:
-                player["level"] += 1
-                player["exp"] -= 30
-                print("Level up")
-                print("level :", player["level"])
     elif pilih == "3":
         if len(inventory) == 0:
             print("iventory kosong")
@@ -179,3 +181,5 @@ while True:
                 print("HP :",daftar_monster[pilih_monster]["hp"])
                 print("Damage :",daftar_monster[pilih_monster]["damage"])
                 monster_aktif = daftar_monster[pilih_monster]
+    else:
+        print("tidak valid")
