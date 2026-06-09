@@ -57,6 +57,61 @@ def spawn_monster():
             "damage" : random.randint(5, 20)
         }
     return monster_random
+def shop(player, inventory):
+    while True:
+            print("===SHOP===")
+            print("1. potion(10 gold)")
+            print("2. keluar")
+            print("==========")
+            pilih_shop = input("beli :")
+            if pilih_shop == "1":
+                if player["gold"] >= 10:
+                    player["gold"] -= 10
+                    inventory.append("potion")
+                    print("item berhasil ditambah")
+                    print("Gold :", player["gold"])
+                else :
+                    print("gold tidak cukup")
+            elif pilih_shop == "2":
+                print("keluar shop...")
+                break
+def inventory_menu(player, inventory):
+    while True:
+                print("===INVENTORY===")
+                print("1. lihat inventory")
+                print("2. pakai item")
+                print("3. keluar")
+                print("===============")
+                pilih_item = input("pilih :")
+                if pilih_item == "2":
+                    nama_item = input("nama item :")
+                    if nama_item in inventory:
+                        inventory.remove(nama_item)
+                        print("item berhasil digunakan")
+                        if nama_item == "potion":
+                            player["hp"] += 10
+                            if player["hp"] > player["max_hp"]:
+                                player["hp"] = player["max_hp"]
+                            print("HP :", player["hp"])
+                        elif nama_item == "elixir":
+                            player["exp"] += 10
+                            print("exp :",player["exp"])
+                        elif nama_item == "super potion":
+                            player["hp"] += 30
+                            if player["hp"] > player["max_hp"]:
+                                player["hp"] = player["max_hp"]
+                            print("HP :", player["hp"])
+                    else :
+                        print("item tidak ada di tas")
+                elif pilih_item == "3":
+                    print("keluar inventory")
+                    break
+                elif pilih_item == "1":
+                    if len(inventory) == 0:
+                        print("tidak ada item")
+                    else:
+                        for item in inventory:
+                            print(item)
 
 while True:
     print("===ACTION===")
@@ -128,60 +183,9 @@ while True:
         if len(inventory) == 0:
             print("iventory kosong")
         else :
-            while True:
-                print("===INVENTORY===")
-                print("1. lihat inventory")
-                print("2. pakai item")
-                print("3. keluar")
-                print("===============")
-                pilih_item = input("pilih :")
-                if pilih_item == "2":
-                    nama_item = input("nama item :")
-                    if nama_item in inventory:
-                        inventory.remove(nama_item)
-                        print("item berhasil digunakan")
-                        if nama_item == "potion":
-                            player["hp"] += 10
-                            if player["hp"] > player["max_hp"]:
-                                player["hp"] = player["max_hp"]
-                            print("HP :", player["hp"])
-                        elif nama_item == "elixir":
-                            player["exp"] += 10
-                            print("exp :",player["exp"])
-                        elif nama_item == "super potion":
-                            player["hp"] += 30
-                            if player["hp"] > player["max_hp"]:
-                                player["hp"] = player["max_hp"]
-                            print("HP :", player["hp"])
-                    else :
-                        print("item tidak ada di tas")
-                elif pilih_item == "3":
-                    print("keluar inventory")
-                    break
-                elif pilih_item == "1":
-                    if len(inventory) == 0:
-                        print("tidak ada item")
-                    else:
-                        for item in inventory:
-                            print(item)
+            inventory_menu(player, inventory)
     elif pilih == "5":
-        while True:
-            print("===SHOP===")
-            print("1. potion(10 gold)")
-            print("2. keluar")
-            print("==========")
-            pilih_shop = input("beli :")
-            if pilih_shop == "1":
-                if player["gold"] >= 10:
-                    player["gold"] -= 10
-                    inventory.append("potion")
-                    print("item berhasil ditambah")
-                    print("Gold :", player["gold"])
-                else :
-                    print("gold tidak cukup")
-            elif pilih_shop == "2":
-                print("keluar shop...")
-                break
+        shop(player, inventory)
     elif pilih == "6":
         monster = {
             "nama" : "",
