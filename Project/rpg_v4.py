@@ -12,6 +12,11 @@
 
 inventory = []
 daftar_monster = []
+loot_random = [
+    "super potion",
+    "elixir",
+    "potion"
+]
 player = {
     "nama" : "Farrel",
     "hp" : 100,
@@ -93,6 +98,9 @@ while True:
             print("HP", monster_aktif["nama"],":",monster_aktif["hp"])
             if monster_aktif["hp"] <= 0:
                 print("YOU WIN!")
+                monster_kalah_loot = random.choice(loot_random)
+                inventory.append(monster_kalah_loot)
+                print("kamu mendapatkan",monster_kalah_loot)
                 player["gold"] += 15
                 print("Gold :", player["gold"])
                 player["exp"] += 10
@@ -134,6 +142,16 @@ while True:
                         print("item berhasil digunakan")
                         if nama_item == "potion":
                             player["hp"] += 10
+                            if player["hp"] > player["max_hp"]:
+                                player["hp"] = player["max_hp"]
+                            print("HP :", player["hp"])
+                        elif nama_item == "elixir":
+                            player["exp"] += 10
+                            print("exp :",player["exp"])
+                        elif nama_item == "super potion":
+                            player["hp"] += 30
+                            if player["hp"] > player["max_hp"]:
+                                player["hp"] = player["max_hp"]
                             print("HP :", player["hp"])
                     else :
                         print("item tidak ada di tas")
