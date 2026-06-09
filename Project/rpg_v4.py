@@ -15,6 +15,7 @@ daftar_monster = []
 player = {
     "nama" : "Farrel",
     "hp" : 100,
+    "max_hp" : 100,
     "gold" : 50,
     "level" : 1,
     "exp" : 0
@@ -69,6 +70,8 @@ while True:
         break
     elif pilih == "2":
         player["hp"] += heal()
+        if player["hp"] > player["max_hp"]:
+            player["hp"] = player["max_hp"]
         print("player berhasil di heal")
         print("HP :", player["hp"])
     elif pilih == "1":
@@ -90,8 +93,12 @@ while True:
                 if player["exp"] >= 30:
                     player["level"] += 1
                     player["exp"] -= 30
+                    player["max_hp"] += 30
+                    player["hp"] = player["max_hp"]
                     print("Level up")
+                    print("player berhasil dipulihkan")
                     print("level :", player["level"])
+                    print("Max HP :", player["max_hp"])
                 daftar_monster.remove(monster_aktif)
                 monster_aktif = None
                 continue
