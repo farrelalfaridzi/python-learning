@@ -19,6 +19,13 @@ player = {
     "level" : 1,
     "exp" : 0
 }
+nama_random_monster = [
+    "Goblin",
+    "Orc",
+    "Dragon",
+    "Slime",
+    "Skeleton"
+]
 
 monster_aktif = None
 
@@ -48,7 +55,8 @@ while True:
     print("6. tambah monster")
     print("7. lihat monster")
     print("8. pilih monster")
-    print("9. keluar")
+    print("9. spawn monster")
+    print("10. keluar")
     print("============")
     pilih = input("pilihan :")
     if pilih == "4":
@@ -56,7 +64,7 @@ while True:
             print("silahkan pilih monster terlebih dahulu")
         else :
             status(player, monster_aktif)
-    elif pilih == "9":
+    elif pilih == "10":
         print("terimakasih...")
         break
     elif pilih == "2":
@@ -70,6 +78,8 @@ while True:
             damage = attack()
             print("Damage :", damage)
             monster_aktif["hp"] -= damage
+            if monster_aktif["hp"] < 0:
+                monster_aktif["hp"] = 0
             print("HP", monster_aktif["nama"],":",monster_aktif["hp"])
             if monster_aktif["hp"] <= 0:
                 print("YOU WIN!")
@@ -181,5 +191,14 @@ while True:
                 print("HP :",daftar_monster[pilih_monster]["hp"])
                 print("Damage :",daftar_monster[pilih_monster]["damage"])
                 monster_aktif = daftar_monster[pilih_monster]
+    elif pilih == "9":
+        monster_random = {
+            "nama" : random.choice(nama_random_monster),
+            "hp" : random.randint(50, 100),
+            "damage" : random.randint(5, 20)
+        }
+        print("monster dibuat")
+        print(monster_random["nama"],"|","HP :", monster_random["hp"],"|","Damage :", monster_random["damage"])
+        daftar_monster.append(monster_random)
     else:
         print("tidak valid")
