@@ -112,6 +112,42 @@ def inventory_menu(player, inventory):
                     else:
                         for item in inventory:
                             print(item)
+def attack_menu(player, monster_aktif, daftar_monster, inventory):
+    damage = attack()
+    print("Damage :", damage)
+    monster_aktif["hp"] -= damage
+    if monster_aktif["hp"] < 0:
+        monster_aktif["hp"] = 0
+    print("HP", monster_aktif["nama"],":",monster_aktif["hp"])
+    if monster_aktif["hp"] <= 0:
+        print("YOU WIN!")
+        monster_kalah_loot = random.choice(loot_random)
+        inventory.append(monster_kalah_loot)
+        print("kamu mendapatkan",monster_kalah_loot)
+        player["gold"] += 15
+        print("Gold :", player["gold"])
+        player["exp"] += 10
+        print("EXP :", player["exp"])
+        if player["exp"] >= 30:
+            player["level"] += 1
+            player["exp"] -= 30
+            player["max_hp"] += 30
+            player["hp"] = player["max_hp"]
+            print("Level up")
+            print("player berhasil dipulihkan")
+            print("level :", player["level"])
+            print("Max HP :", player["max_hp"])
+        daftar_monster.remove(monster_aktif)
+        monster_aktif = None
+        return monster_aktif
+    #monster
+    print("monster menyerang balik")
+    player["hp"] -= monster_aktif["damage"]
+    print("Damage monster :", monster_aktif["damage"])
+    if player["hp"] <= 0:
+        print("Game over")
+        return monster_aktif
+    return monster_aktif
 
 while True:
     print("===ACTION===")
@@ -145,40 +181,8 @@ while True:
         if monster_aktif == None:
             print("silahkan pilih monster terlebih dahulu")
         else :
-            damage = attack()
-            print("Damage :", damage)
-            monster_aktif["hp"] -= damage
-            if monster_aktif["hp"] < 0:
-                monster_aktif["hp"] = 0
-            print("HP", monster_aktif["nama"],":",monster_aktif["hp"])
-            if monster_aktif["hp"] <= 0:
-                print("YOU WIN!")
-                monster_kalah_loot = random.choice(loot_random)
-                inventory.append(monster_kalah_loot)
-                print("kamu mendapatkan",monster_kalah_loot)
-                player["gold"] += 15
-                print("Gold :", player["gold"])
-                player["exp"] += 10
-                print("EXP :", player["exp"])
-                if player["exp"] >= 30:
-                    player["level"] += 1
-                    player["exp"] -= 30
-                    player["max_hp"] += 30
-                    player["hp"] = player["max_hp"]
-                    print("Level up")
-                    print("player berhasil dipulihkan")
-                    print("level :", player["level"])
-                    print("Max HP :", player["max_hp"])
-                daftar_monster.remove(monster_aktif)
-                monster_aktif = None
-                continue
-            #monster
-            print("monster menyerang balik")
-            player["hp"] -= monster_aktif["damage"]
-            print("Damage monster :", monster_aktif["damage"])
-            if player["hp"] <= 0:
-                print("Game over")
-                break
+            attack_menu(player, monster_aktif, daftar_monster, inventory)
+            monster_aktif = attack_menu(player, monster_aktif, daftar_monster, inventory)
     elif pilih == "3":
         if len(inventory) == 0:
             print("iventory kosong")
@@ -228,7 +232,7 @@ while True:
                 print("Damage :",daftar_monster[pilih_monster]["damage"])
                 monster_aktif = daftar_monster[pilih_monster]
     elif pilih == "9":
-        monster_baru = spawn_monster
+        monster_baru = spawn_monster()
         print("monster dibuat")
         print(monster_baru["nama"],"|","HP :", monster_baru["hp"],"|","Damage :", monster_baru["damage"])
         daftar_monster.append(monster_baru)
