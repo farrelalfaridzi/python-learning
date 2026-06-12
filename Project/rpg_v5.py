@@ -88,6 +88,9 @@ def shop(player, inventory):
                 break
 def inventory_menu(player, inventory):
     while True:
+                if len(inventory) == 0:
+                    print("tas kosong")
+                    return
                 print("===INVENTORY===")
                 print("1. lihat inventory")
                 print("2. pakai item")
