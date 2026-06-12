@@ -268,4 +268,4 @@ while True:
         load_game(player)
         print("===GAME BERHASIL DIMUAT===")
     else:
-        print("tidak valid")#
+        print("tidak valid")
