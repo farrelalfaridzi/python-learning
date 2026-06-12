@@ -181,7 +181,6 @@ while True:
         if monster_aktif == None:
             print("silahkan pilih monster terlebih dahulu")
         else :
-            attack_menu(player, monster_aktif, daftar_monster, inventory)
             monster_aktif = attack_menu(player, monster_aktif, daftar_monster, inventory)
     elif pilih == "3":
         if len(inventory) == 0:
