@@ -1,0 +1,6 @@
+nama =Farrel
+hp =95
+gold =50
+max_hp =100
+level =1
+exp =0

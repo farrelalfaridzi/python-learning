@@ -166,7 +166,10 @@ def save_game(player):
     file = open("save.txt", "w")
     file.write("nama =" + player["nama"] + "\n")
     file.write("hp =" + str(player["hp"]) + "\n")
-    file.write("gold =" + str(player["gold"]))
+    file.write("gold =" + str(player["gold"]) + "\n")
+    file.write("max_hp =" + str(player["max_hp"]) + "\n")
+    file.write("level =" + str(player["level"]) + "\n")
+    file.write("exp =" + str(player["exp"]))
     file.close()
 def load_game(player):
     file = open("save.txt", "r")
@@ -175,6 +178,9 @@ def load_game(player):
     player["nama"] = baris[0].split("=")[1]
     player["hp"] = int(baris[1].split("=")[1])
     player["gold"] = int(baris[2].split("=")[1])
+    player["max_hp"] = int(baris[3].split("=")[1])
+    player["level"] = int(baris[4].split("=")[1])
+    player["exp"] = int(baris[5].split("=")[1])
     file.close()
 while True:
     print("===ACTION===")
