@@ -1,42 +1,96 @@
-# Dokumentasi Belajar Python & Project Game RPG
+# Belajar Python, Linux, dan Software Development
 
-Selamat datang di repositori dokumentasi belajar pemrograman Python gwa. Repositori ini dibuat sebagai rekam jejak dalam mendalami bahasa pemrograman Python, logika algoritma, struktur data, serta implementasi *Version Control System* menggunakan Git & GitHub.
+Repositori ini berisi perjalanan belajar pemrograman, logika algoritma, Linux, Git, dan pengembangan software menggunakan Python.
 
-Project utama dalam repositori ini adalah sebuah **Game RPG (Role-Playing Game) Berbasis Teks** yang dibangun dari nol untuk mengimplementasikan konsep penanganan file (*file handling*), manipulasi data, dan prinsip *clean code*.
+Tujuan utama repositori ini adalah mendokumentasikan proses belajar secara bertahap, mulai dari konsep dasar pemrograman hingga membangun project yang lebih kompleks.
 
 ---
 
 ## 📂 Struktur Repositori
 
-Repositori ini dibagi menjadi beberapa direktori khusus sesuai dengan tahap pembelajaran:
+### `Dasar/`
 
-* **`Project/`**: Berisi *source code* utama dari Game RPG (`rpg_v5.py`) beserta file penyimpanan data game (*save states*).
-* **`Dasar/`**: Berisi skrip latihan dasar Python (Variabel, Perulangan, Percabangan, dan Fungsi).
-* **`Challenge/`**: Berisi latihan pemecahan masalah (problem-solving) dan logika algoritma.
+Berisi materi dan latihan dasar Python:
+
+* Input & Output
+* If Else
+* While Loop
+* Function
+* Dasar Logika Pemrograman
+
+### `Challenge/`
+
+Berisi berbagai challenge untuk melatih kemampuan problem solving dan logika:
+
+* Login System
+* Tebak Angka
+* ATM Sederhana
+* Inventory System
+* Suit (Batu-Gunting-Kertas)
+* Data Monster
+* Dan challenge lainnya
+
+### `Project/`
+
+Berisi project utama yang dikembangkan secara bertahap.
+
+#### RPG Text-Based Game
+
+Project RPG berbasis terminal yang dikembangkan dari versi awal hingga versi terbaru dengan berbagai fitur seperti:
+
+* Battle System
+* Inventory System
+* Shop System
+* EXP & Leveling
+* Loot System
+* Random Monster Spawn
+* Save & Load Game
+* Quest System
 
 ---
 
-## 🚀 Fitur Utama Game RPG (v5)
+## 🛠️ Tools & Teknologi
 
-Game RPG ini dikembangkan secara bertahap dengan fitur-fitur berikut:
-
-1.  **Sistem Pertarungan Turn-Based**: Mekanisme pertarungan interaktif melawan monster yang muncul secara dinamis (*spawn monster*).
-2.  **Manajemen Inventory (Tas)**: Logika penggunaan item (Potion, Elixir) yang aman disertai penanganan kondisi tas kosong untuk menghindari error pada data player.
-3.  **Penyimpanan Data Game (Save & Load)**: Sistem *file handling* kustom yang menyimpan data player serta struktur data kompleks (List/Inventory) ke dalam file teks biasa menggunakan teknik serialisasi string (`.join()` dan `.split()`).
-4.  **Sistem Penanganan Error (Error Handling)**: Proteksi game menggunakan blok `try-except` agar game tidak *crash* jika file *save-an* belum terbuat atau tidak ditemukan.
-
----
-
-## 🛠️ Teknologi & Tools yang Digunakan
-
-* **Bahasa Pemrograman**: Python 3.x
-* **Version Control**: Git & GitHub (Manajemen Branch Utama: `main`)
-* **Lingkungan Pengembangan**: VS Code di Linux (Fedora Enterprise)
+* Python 3
+* Git
+* GitHub
+* Linux (Fedora)
+* Visual Studio Code
 
 ---
 
-## 📈 Rencana Pengembangan ke Depan
+## 📚 Materi yang Dipelajari
 
-* Mengimplementasikan Pemrograman Berorientasi Objek (OOP) agar kode lebih modular.
-* Menambahkan sistem papan skor lokal (*High-Score Database*).
-* Memperluas sistem item, toko belanja (shop), dan sistem *crafting*.
+* Variabel
+* Tipe Data
+* Percabangan (If Else)
+* Perulangan (While Loop)
+* Function
+* List
+* Dictionary
+* File Handling
+* Git & GitHub
+* Dasar Linux Terminal
+
+---
+
+## 🎯 Tujuan Repository
+
+* Membangun kebiasaan belajar konsisten
+* Melatih logika pemrograman
+* Mendokumentasikan progress belajar
+* Mengembangkan project secara bertahap menggunakan Git dan GitHub
+* Menjadi portofolio perkembangan kemampuan programming
+
+---
+
+## 🚀 Rencana Pengembangan
+
+* Multiple Quest System
+* Equipment System
+* OOP (Object Oriented Programming)
+* Save Data yang Lebih Kompleks
+* Modularisasi Project
+* Project Python Lanjutan
+* Dasar Data Structure & Algorithm
+* Dasar Software Engineering
