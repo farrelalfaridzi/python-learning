@@ -37,6 +37,13 @@ player = {
     "level" : 1,
     "exp" : 0
 }
+quest = {
+    "nama_quest" : "bunuh 3 monster",
+    "progress" : 0,
+    "target" : 3,
+    "reward" : 50,
+    "quest_done" : False
+}
 nama_random_monster = [
     "Goblin",
     "Orc",
@@ -127,7 +134,7 @@ def inventory_menu(player, inventory):
                     else:
                         for item in inventory:
                             print(item)
-def attack_menu(player, monster_aktif, daftar_monster, inventory):
+def attack_menu(player, monster_aktif, daftar_monster, inventory, quest):
     damage = attack()
     print("Damage :", damage)
     monster_aktif["hp"] -= damage
@@ -136,6 +143,12 @@ def attack_menu(player, monster_aktif, daftar_monster, inventory):
     print("HP", monster_aktif["nama"],":",monster_aktif["hp"])
     if monster_aktif["hp"] <= 0:
         print("YOU WIN!")
+        quest["progress"] += 1
+        if quest["progress"] >= quest["target"] and quest["quest_done"] == False:
+            player["gold"] += quest["reward"]
+            quest["quest_done"] = True
+            print("quest selesai!")
+            print("+", quest["reward"], "gold")
         monster_kalah_loot = random.choice(loot_random)
         inventory.append(monster_kalah_loot)
         print("kamu mendapatkan",monster_kalah_loot)
@@ -183,6 +196,7 @@ def load_game(player):
     player["level"] = int(baris[4].split("=")[1])
     player["exp"] = int(baris[5].split("=")[1])
     file.close()
+
 while True:
     print("===ACTION===")
     print("1. attack")
@@ -197,6 +211,7 @@ while True:
     print("10. keluar")
     print("11. save game")
     print("12. load game")
+    print("13. lihat quest")
     print("============")
     pilih = input("pilihan :")
     if pilih == "4":
@@ -217,7 +232,7 @@ while True:
         if monster_aktif == None:
             print("silahkan pilih monster terlebih dahulu")
         else :
-            monster_aktif = attack_menu(player, monster_aktif, daftar_monster, inventory)
+            monster_aktif = attack_menu(player, monster_aktif, daftar_monster, inventory, quest)
     elif pilih == "3":
         if len(inventory) == 0:
             print("iventory kosong")
@@ -277,5 +292,13 @@ while True:
     elif pilih == "12":
         load_game(player)
         print("===GAME BERHASIL DIMUAT===")
+    elif pilih == "13":
+        if quest["quest_done"] == False:
+            print("nama quest :", quest["nama_quest"])
+            print("progress :", quest["progress"])
+            print("target :", quest["target"])
+            print("reward :", quest["reward"])
+        elif quest["quest_done"] == True:
+            print("quest telah selesai")
     else:
         print("tidak valid")
