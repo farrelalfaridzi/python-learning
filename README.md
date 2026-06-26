@@ -1,96 +1,127 @@
-# Belajar Python, Linux, dan Software Development
+# Python, Linux, and Software Development Journey
 
-Repositori ini berisi perjalanan belajar pemrograman, logika algoritma, Linux, Git, dan pengembangan software menggunakan Python.
+This repository documents my learning journey in Python programming, Linux, Git, and software development.
 
-Tujuan utama repositori ini adalah mendokumentasikan proses belajar secara bertahap, mulai dari konsep dasar pemrograman hingga membangun project yang lebih kompleks.
-
----
-
-## 📂 Struktur Repositori
-
-### `Dasar/`
-
-Berisi materi dan latihan dasar Python:
-
-* Input & Output
-* If Else
-* While Loop
-* Function
-* Dasar Logika Pemrograman
-
-### `Challenge/`
-
-Berisi berbagai challenge untuk melatih kemampuan problem solving dan logika:
-
-* Login System
-* Tebak Angka
-* ATM Sederhana
-* Inventory System
-* Suit (Batu-Gunting-Kertas)
-* Data Monster
-* Dan challenge lainnya
-
-### `Project/`
-
-Berisi project utama yang dikembangkan secara bertahap.
-
-#### RPG Text-Based Game
-
-Project RPG berbasis terminal yang dikembangkan dari versi awal hingga versi terbaru dengan berbagai fitur seperti:
-
-* Battle System
-* Inventory System
-* Shop System
-* EXP & Leveling
-* Loot System
-* Random Monster Spawn
-* Save & Load Game
-* Quest System
+The goal of this repository is to continuously improve programming skills by building projects, solving coding challenges, and documenting progress from fundamental programming concepts to more advanced software development topics.
 
 ---
 
-## 🛠️ Tools & Teknologi
+# 📂 Repository Structure
 
-* Python 3
-* Git
-* GitHub
-* Linux (Fedora)
-* Visual Studio Code
+## 📁 Basics
 
----
+Contains Python fundamentals and programming exercises:
 
-## 📚 Materi yang Dipelajari
-
-* Variabel
-* Tipe Data
-* Percabangan (If Else)
-* Perulangan (While Loop)
-* Function
-* List
-* Dictionary
-* File Handling
-* Git & GitHub
-* Dasar Linux Terminal
+- Input & Output
+- Variables
+- Data Types
+- If Statements
+- Loops
+- Functions
+- Basic Programming Logic
 
 ---
 
-## 🎯 Tujuan Repository
+## 📁 Challenges
 
-* Membangun kebiasaan belajar konsisten
-* Melatih logika pemrograman
-* Mendokumentasikan progress belajar
-* Mengembangkan project secara bertahap menggunakan Git dan GitHub
-* Menjadi portofolio perkembangan kemampuan programming
+A collection of small projects and coding challenges designed to improve logical thinking and problem-solving skills.
+
+Examples include:
+
+- Login System
+- Number Guessing Game
+- Simple ATM
+- Inventory System
+- Rock Paper Scissors
+- Monster Database
+- And many more...
 
 ---
 
-## 🚀 Rencana Pengembangan
+## 📁 Projects
 
-* Multiple Quest System
-* Equipment System
-* OOP (Object Oriented Programming)
-* Save Data yang Lebih Kompleks
-* Modularisasi Project
-* Project Python Lanjutan
-* Dasar Data Structure & Algorithm
-* Dasar Software Engineering
+Contains larger projects developed incrementally using Git.
+
+### 🎮 Text-Based RPG Game
+
+A terminal-based RPG project built step by step while learning Python.
+
+Current features include:
+
+- Turn-Based Battle System
+- Player Level & Experience
+- Inventory System
+- Weapon Equipment System
+- Weapon Shop
+- Buy & Sell Weapons
+- Random Weapon Drops
+- Save & Load Game
+- Random Monster Generation
+
+More features will continue to be added as new programming concepts are learned.
+
+---
+
+# 🛠 Technologies
+
+- Python 3
+- Git
+- GitHub
+- Linux (Fedora)
+- Visual Studio Code
+
+---
+
+# 📚 Topics Learned
+
+- Variables
+- Data Types
+- Conditional Statements
+- Loops
+- Functions
+- Lists
+- Dictionaries
+- File Handling
+- Git & GitHub
+- Linux Terminal Basics
+
+---
+
+# 🎯 Goals
+
+- Build consistent programming habits
+- Improve logical thinking and problem-solving
+- Learn software development step by step
+- Document learning progress using Git
+- Build a programming portfolio through real projects
+
+---
+
+# 🚀 Roadmap
+
+- [x] Python Fundamentals
+- [x] Programming Challenges
+- [x] Text-Based RPG
+- [ ] Object-Oriented Programming (OOP)
+- [ ] Data Structures & Algorithms
+- [ ] JSON Save System
+- [ ] Modular Project Architecture
+- [ ] Pygame Development
+- [ ] Software Engineering Fundamentals
+- [ ] AI & Machine Learning Projects
+
+---
+
+# 📈 Current Focus
+
+Currently learning:
+
+- Python
+- Linux
+- Git & GitHub
+- Software Development
+- Problem Solving
+
+Future goal:
+
+Build complete desktop applications, games, and AI projects using Python.

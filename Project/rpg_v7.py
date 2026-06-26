@@ -119,6 +119,7 @@ def shop(player, inventory, daftar_weapon):
             print("1. potion(10 gold)")
             print("2. keluar")
             print("3. weapon")
+            print("4. jual weapon")
             print("==========")
             pilih_shop = input("beli :")
             if pilih_shop == "1":
@@ -153,6 +154,34 @@ def shop(player, inventory, daftar_weapon):
                         print("gold :",player["gold"])
                     else:
                         print("gold tidak cukup")
+            elif pilih_shop == "4":
+                nomor_weapon = 0
+                weapon_dijual = []
+                print("===jual weapon===")
+                for item in inventory:
+                    if isinstance(item, dict):
+                        nomor_weapon += 1
+                        weapon_dijual.append(item)
+                        print(nomor_weapon, item["nama"], "harga :", item["harga"]//2)
+                print("=================")
+                if len(weapon_dijual) == 0:
+                    print("tidak ada weapon")
+                    return
+                else: 
+                    pilih_jual = int(input("pilih nomor:"))
+                    if pilih_jual < 1 or pilih_jual > len(weapon_dijual): 
+                        print("angka tidak valid")
+                    else:
+                        pilih_jual -= 1
+                        weapon = weapon_dijual[pilih_jual]
+                        player["gold"] += weapon["harga"]//2
+                        inventory.remove(weapon)
+                        if player["weapon_aktif"] == weapon:
+                            player["weapon_aktif"] = None
+                        print("weapon berhasil dijual")
+                        print("gold :", player["gold"])
+                        return
+
 def inventory_menu(player, inventory):
     while True:
                 if len(inventory) == 0:
@@ -318,7 +347,17 @@ def load_game(player, daftar_weapon, inventory):
         if weapon_ketemu == False:
             print("weapon tidak ada")
             player["weapon_aktif"] = None
-    inventory = baris[7].split("=")[1].split(",")
+    hasil_split = baris[7].split("=")[1].split(",")
+    inventory.clear()
+    for x in hasil_split:
+        weapon_ketemu = False
+        for item in daftar_weapon:
+            if item["nama"] == x:
+                inventory.append(item) 
+                weapon_ketemu = True
+                break
+        if weapon_ketemu == False:
+            inventory.append(x)
     file.close()
 
 while True:
@@ -415,7 +454,7 @@ while True:
         save_game(player, inventory)
         print("player berhasil di save")
     elif pilih == "12":
-        load_game(player, daftar_weapon)
+        load_game(player, daftar_weapon, inventory)
         print("===GAME BERHASIL DIMUAT===")
     elif pilih == "13":
         if quest["quest_done"] == False:
