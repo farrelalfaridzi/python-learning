@@ -38,6 +38,8 @@ class Player(Character):
         print(f"{self.nama} menyerang!")
 
     def equip(self, weapon_baru):
+        if self.weapon != None:
+            self.inventory.add_item(self.weapon)
         self.weapon = weapon_baru
 
 class Monster(Character):
@@ -71,12 +73,13 @@ class Inventory:
 
 player = Player("Farrel", 100, 50, None)
 wood = Weapon("Wood Sword",15,10)
+iron = Weapon("Iron Sword",20,15)
 monster = Monster("Goblin",100,10)
 
 player.equip(wood)
+player.equip(iron)
 player.attack(monster)
 monster.attack(player)
 player.status()
 monster.status()
-player.inventory.add_item(wood)
 player.inventory.show_inventory()
