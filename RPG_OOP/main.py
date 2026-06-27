@@ -1,44 +1,73 @@
+class Character:
+    def __init__(self, nama, hp):
+        self.nama = nama
+        self.hp = hp
+
+    def status(self):
+        print("Nama :", self.nama)
+        print("HP :", self.hp)
+
+    def take_damage(self, damage):
+        self.hp -= damage
+        if self.hp < 0:
+            self.hp = 0
+        print(f"darah {self.nama} berkurang -{damage}")
+
 class Weapon:
     def __init__(self, nama, damage, harga):
         self.nama = nama
         self.damage = damage
         self.harga = harga
 
-class Player:
+class Player(Character):
     def __init__(self, nama, hp, gold, weapon):
-        self.nama = nama
-        self.hp = hp
+        super().__init__(nama, hp)
         self.gold = gold
         self.weapon = weapon
+        self.inventory = Inventory()
 
     def status(self):
         print("=== PLAYER ===")
-        print("Nama :", self.nama)
-        print("HP :", self.hp)
+        super().status()
         print("Gold :", self.gold)
         print("Weapon :", self.weapon.nama)
         print("Damage Weapon :", self.weapon.damage)
 
     def attack(self, monster):
-        monster.hp -= self.weapon.damage
+        monster.take_damage(self.weapon.damage)
+        print(f"{self.nama} menyerang!")
 
     def equip(self, weapon_baru):
         self.weapon = weapon_baru
 
-class Monster:
+class Monster(Character):
     def __init__(self, nama, hp, damage):
-        self.nama = nama
-        self.hp = hp
+        super().__init__(nama, hp)
         self.damage = damage
 
     def status(self):
         print("=== MONSTER ===")
-        print("Nama :", self.nama)
-        print("HP :", self.hp)
+        super().status()
         print("Damage :", self.damage)
 
     def attack(self, player):
-        player.hp -= self.damage
+        player.take_damage(self.damage)
+        print(f"{self.nama} menyerang balik!")
+
+class Inventory:
+    def __init__(self):
+        self.items = []
+
+    def add_item(self, item):
+        self.items.append(item)
+
+    def show_inventory(self):
+        nomor = 0
+        print("=== INVENTORY ===")
+        for item in self.items:
+            nomor += 1
+            print(nomor, item.nama)
+        print("=================")
 
 player = Player("Farrel", 100, 50, None)
 wood = Weapon("Wood Sword",15,10)
@@ -46,10 +75,8 @@ monster = Monster("Goblin",100,10)
 
 player.equip(wood)
 player.attack(monster)
-print("player menyerang!")
-print("hp monster berkurang -",player.weapon.damage)
 monster.attack(player)
-print("monster menyerang balik!")
-print("darah player berkurang -", monster.damage)
 player.status()
 monster.status()
+player.inventory.add_item(wood)
+player.inventory.show_inventory()
