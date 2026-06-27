@@ -13,11 +13,15 @@ class Character:
             self.hp = 0
         print(f"darah {self.nama} berkurang -{damage}")
 
-class Weapon:
-    def __init__(self, nama, damage, harga):
+class Item:
+    def __init__(self, nama, harga):
         self.nama = nama
-        self.damage = damage
         self.harga = harga
+
+class Weapon(Item):
+    def __init__(self, nama,harga,damage):
+        super().__init__(nama, harga)
+        self.damage = damage
 
 class Player(Character):
     def __init__(self, nama, hp, gold, weapon):
