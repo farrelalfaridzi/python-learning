@@ -5,6 +5,13 @@ class Inventory:
     def add_item(self, item):
         self.items.append(item)
 
+    def remove_item(self, item):
+        self.items.remove(item)
+
+    def has_item(self, item):
+        if item in self.items:
+            return True
+
     def show_inventory(self):
         nomor = 0
         print("=== INVENTORY ===")

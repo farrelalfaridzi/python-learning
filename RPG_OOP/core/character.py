@@ -12,3 +12,8 @@ class Character:
         if self.hp < 0:
             self.hp = 0
         print(f"darah {self.nama} berkurang -{damage}")
+
+    def heal(self, amount):
+        self.hp += amount
+        if self.hp > 100:
+            self.hp = 100
