@@ -12,7 +12,7 @@ class Monster(Character):
 
     def attack(self, player):
         print(f"{self.nama} menyerang balik!")
-        player.take_damage(self.damage)
-
-    def die(self, player):
-        player.inventory.add_item(self.loot)
+        damage_diterima = self.damage
+        if player.armor != None:
+            damage_diterima -= player.armor.defense
+        player.take_damage(damage_diterima)

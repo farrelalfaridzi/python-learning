@@ -17,3 +17,7 @@ class Character:
         self.hp += amount
         if self.hp > 100:
             self.hp = 100
+
+    def die(self):
+        if self.hp <= 0:
+            return True

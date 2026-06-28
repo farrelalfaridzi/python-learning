@@ -12,16 +12,19 @@ from core.inventory import Inventory
 
 from core.potion import Potion
 
-player = Player("Farrel", 100, 50, None)
+from core.armor import Armor
+
+player = Player("Farrel", 100, 50, None, None)
 wood = Weapon("Wood Sword",15,10)
 small = Potion("small potion",10,10)
-monster = Monster("Goblin",100,30,small)
+monster = Monster("Goblin",100,20,small)
+leather = Armor("Leather armor",10,5)
 
+player.buy(leather)
+player.equip_armor(leather)
 player.buy(wood)
-player.equip(wood)
+player.equip_weapon(wood)
 player.attack(monster)
 monster.attack(player)
-player.buy(small)
-player.drink(small)
 player.status()
 monster.status()
