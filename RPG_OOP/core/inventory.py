@@ -24,7 +24,7 @@ class Inventory:
 
     def choose_item(self, index):
         index -= 1
-        if index > len(self.items) or index <0:
+        if index >= len(self.items) or index <0:
             return None
         else:
             return self.items[index]

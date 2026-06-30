@@ -1,7 +1,3 @@
-from core.weapon import Weapon
-from core.armor import Armor
-from core.potion import Potion
-
 class Battle:
     def __init__(self, player, monster):
         self.player = player
@@ -64,16 +60,11 @@ class Battle:
                 if nomor > len(self.player.inventory.items) or nomor <0:
                     print("tidak valid")
                 elif nomor == 0:
-                    print("keluar shop")
+                    print("keluar inventory...")
                     break
                 else:
                     item = self.player.inventory.choose_item(nomor)
-                    if isinstance(item, Weapon):
-                        self.player.equip_weapon(item)
-                    elif isinstance(item,Armor):
-                        self.player.equip_armor(item)
-                    elif isinstance(item,Potion):
-                        self.player.drink(item)
+                    item.use(self.player)
 
     def open_inventory(self):
         self.player.inventory.show_inventory()
