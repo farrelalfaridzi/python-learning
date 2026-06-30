@@ -1,8 +1,11 @@
+from core.weapon import Weapon
+from core.armor import Armor
+from core.potion import Potion
+
 class Battle:
-    def __init__(self, player, monster, potion):
+    def __init__(self, player, monster):
         self.player = player
         self.monster = monster
-        self.potion = potion
 
     def player_turn(self):
         while True:
@@ -12,7 +15,7 @@ class Battle:
                 self.player.attack(self.monster)
                 break
             elif pilih == "2":
-                self.player.drink(self.potion)
+                self.show_inventory_menu()
             elif pilih == "3":
                 self.player.status()
                 self.monster.status()
@@ -46,6 +49,33 @@ class Battle:
     def show_menu(self):
         print("=== PLAYER TURN ===")
         print("1. Attack")
-        print("2. Drink potion")
+        print("2. Inventory")
         print("3. Status")
         print("===================")
+
+    def show_inventory_menu(self):
+        while True:
+            if len(self.player.inventory.items) == 0:
+                print("tidak ada item")
+                break
+            else:
+                self.open_inventory()
+                nomor = int(input("Nomor item :"))
+                if nomor > len(self.player.inventory.items) or nomor <0:
+                    print("tidak valid")
+                elif nomor == 0:
+                    print("keluar shop")
+                    break
+                else:
+                    item = self.player.inventory.choose_item(nomor)
+                    if isinstance(item, Weapon):
+                        self.player.equip_weapon(item)
+                    elif isinstance(item,Armor):
+                        self.player.equip_armor(item)
+                    elif isinstance(item,Potion):
+                        self.player.drink(item)
+
+    def open_inventory(self):
+        self.player.inventory.show_inventory()
+        print(f"Gold : {self.player.gold}")
+        print("#tekan 0 untuk keluar shop")
