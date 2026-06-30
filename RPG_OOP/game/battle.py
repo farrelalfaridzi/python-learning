@@ -64,9 +64,11 @@ class Battle:
                     break
                 else:
                     item = self.player.inventory.choose_item(nomor)
+                    if item is None:
+                        print("pilihan tidak valid")
+                        continue
                     item.use(self.player)
 
     def open_inventory(self):
         self.player.inventory.show_inventory()
-        print(f"Gold : {self.player.gold}")
         print("#tekan 0 untuk keluar shop")

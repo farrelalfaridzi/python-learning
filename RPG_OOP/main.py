@@ -16,14 +16,18 @@ from core.armor import Armor
 
 from game.battle import Battle
 
+from game.shop import Shop
+
 player = Player("Farrel", 100, 50, None, None)
 wood = Weapon("Wood Sword",15,30)
 small = Potion("small potion",10,10)
 monster = Monster("Goblin",100,20,small,250)
 leather = Armor("Leather armor",10,50)
 battle = Battle(player, monster)
+shop = Shop()
+shop.add_item(wood)
+shop.add_item(small)
+shop.add_item(leather)
 
-player.buy(leather)
-player.buy(wood)
-player.buy(small)
+shop.open(player)
 battle.start()
