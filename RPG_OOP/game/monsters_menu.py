@@ -13,7 +13,7 @@ class Monsters_menu:
         for monster in self.monsters:
             nomor += 1
             if monster.is_defeated == False:
-                print(f"{nomor}. {monster.nama}")
+                print(f"{nomor}. {monster.nama} (HP {monster.hp})")
             else:
                 print(f"{nomor}. {monster.nama} (Defeated)")
         print("===================")
@@ -40,11 +40,9 @@ class Monsters_menu:
                 monster = self.choose_monster(pilih)
                 if monster is None:
                     print("pilihan tidak valid")
-                battle = Battle(player, monster)
+                battle = Battle(player, monster).start()
                 if monster.is_defeated == True:
                     print(f"{monster.nama} sudah dikalahkan")
-                else:
-                    battle.start()
 
     def check_all_monsters(self):
         for monster in self.monsters:

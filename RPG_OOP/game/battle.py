@@ -25,11 +25,7 @@ class Battle:
         while self.player.hp > 0 and self.monster.hp > 0:
             self.player_turn()
             if self.monster.hp <= 0:
-                print("YOU WIN!")
-                print(f"{self.monster.nama} menjatuhkan {self.monster.loot.nama}")
-                self.player.inventory.add_item(self.monster.loot)
-                self.player.gain_exp(self.monster.exp_reward)
-                self.monster.defeated()
+                self.show_win()
                 break
             self.monster_turn()
             if self.player.hp <= 0:
@@ -74,3 +70,12 @@ class Battle:
     def open_inventory(self):
         self.player.inventory.show_inventory()
         print("#tekan 0 untuk keluar shop")
+
+    def show_win(self):
+        print("--------------")
+        print("YOU WIN!")
+        print(f"{self.monster.nama} menjatuhkan {self.monster.loot.nama}")
+        self.player.inventory.add_item(self.monster.loot)
+        self.player.gain_exp(self.monster.exp_reward)
+        self.monster.defeated()
+        print("--------------")

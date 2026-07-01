@@ -18,6 +18,7 @@ class Player(Character):
         print("Level :", self.level)
         print("EXP :", self.exp)
         print("Gold :", self.gold)
+        print(f"Bonus damage : {self.bonus_damage}")
         if self.weapon != None:
             print("Weapon :", self.weapon.nama)
             print("Damage Weapon :", self.weapon.damage)
