@@ -5,6 +5,7 @@ class Monster(Character):
         self.damage = damage
         self.loot = loot
         self.exp_reward = exp_reward
+        self.is_defeated = False
 
     def status(self):
         print("=== MONSTER ===")
@@ -19,3 +20,6 @@ class Monster(Character):
             if damage_diterima <= 0:
                 damage_diterima = 0
         player.take_damage(damage_diterima)
+
+    def defeated(self):
+        self.is_defeated = True

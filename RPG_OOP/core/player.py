@@ -10,6 +10,7 @@ class Player(Character):
         self.level = 1
         self.exp = 0
         self.bonus_damage = 0
+        self.is_defeated = False
 
     def status(self):
         print("=== PLAYER ===")
@@ -85,3 +86,6 @@ class Player(Character):
         print(f"Level sekarang : {self.level}")
         self.bonus_damage += 5
         print("bonus damage +5")
+
+    def defeated(self):
+        self.is_defeated = True

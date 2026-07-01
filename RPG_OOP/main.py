@@ -20,6 +20,8 @@ from game.shop import Shop
 
 from game.world import World
 
+from game.monsters_menu import Monsters_menu
+
 player = Player("Farrel", 100, 50, None, None)
 wood = Weapon("Wood Sword",15,30)
 bow = Weapon("Weapon",20,50)
@@ -30,16 +32,16 @@ goblin = Monster("Goblin",100,20,small,250)
 orc = Monster("Orc",180,30,leather,180)
 skeleton = Monster("Skeleton",250,40,bow,250)
 dragon = Monster("Dragon",500,70,iron,700)
-monsters = [
-    goblin,
-    orc,
-    skeleton,
-    dragon
-]
+
+monster = Monsters_menu()
+monster.add_monster(goblin)
+monster.add_monster(orc)
+monster.add_monster(skeleton)
+monster.add_monster(dragon)
 
 shop = Shop()
 shop.add_item(wood)
 shop.add_item(small)
 shop.add_item(leather)
-world = World(player,monsters,shop)
+world = World(player,monster,shop)
 world.start()
