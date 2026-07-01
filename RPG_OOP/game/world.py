@@ -1,8 +1,9 @@
 class World:
-    def __init__(self,player,monsters,shop):
+    def __init__(self,player,monsters,shop,save):
         self.player = player
         self.monsters_menu = monsters
         self.shop = shop
+        self.save = save
 
     def show_menu(self):
         print("===== WORLD =====")
@@ -10,6 +11,8 @@ class World:
         print("2. Shop")
         print("3. Inventory")
         print("4. Status")
+        print("5. Save")
+        print("6. Load")
         print("0. Exit")
 
     def start(self):
@@ -29,6 +32,10 @@ class World:
                 self.player.inventory.show_inventory()
             elif pilih == "4":
                 self.player.status()
+            elif pilih == "5":
+                self.save.save(self.player)
+            elif pilih == "6":
+                self.save.load(self.player)
             else:
                 print("input tidak valid")
             check_monster = self.monsters_menu.check_all_monsters()
