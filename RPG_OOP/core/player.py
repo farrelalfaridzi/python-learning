@@ -3,14 +3,62 @@ from core.inventory import Inventory
 class Player(Character):
     def __init__(self, nama, hp, gold=0, weapon=None, armor=None):
         super().__init__(nama, hp)
-        self.gold = gold
-        self.weapon = weapon
-        self.armor = armor
+        self._gold = gold
+        self._weapon = weapon
+        self._armor = armor
         self.inventory = Inventory()
-        self.level = 1
-        self.exp = 0
-        self.bonus_damage = 0
+        self._level = 1
+        self._exp = 0
+        self._bonus_damage = 0
         self.is_defeated = False
+
+    @property
+    def gold(self):
+        return self._gold
+    @gold.setter
+    def gold(self, value):
+        self._gold = value
+        if self._gold < 0:
+            self._gold = 0
+
+    @property
+    def weapon(self):
+        return self._weapon
+    @weapon.setter
+    def weapon(self, value):
+        self._weapon = value
+
+    @property
+    def armor(self):
+        return self._armor
+    @armor.setter
+    def armor(self, value):
+        self._armor = value
+        if self._armor.defense < 0:
+            self._armor.defense = 0
+
+    @property
+    def level(self):
+        return self._level
+    @level.setter
+    def level(self, value):
+        self._level = value
+        if self._level < 1:
+            self._level = 1
+
+    @property
+    def exp(self):
+        return self._exp
+    @exp.setter
+    def exp(self, value):
+        self._exp = value
+
+    @property
+    def bonus_damage(self):
+        return self._bonus_damage
+    @bonus_damage.setter
+    def bonus_damage(self, value):
+        self._bonus_damage = value
 
     def status(self):
         print("=== PLAYER ===")

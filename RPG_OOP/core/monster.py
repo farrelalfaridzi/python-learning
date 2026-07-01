@@ -2,10 +2,33 @@ from core.character import Character
 class Monster(Character):
     def __init__(self, nama, hp, damage, loot, exp_reward):
         super().__init__(nama, hp)
-        self.damage = damage
-        self.loot = loot
-        self.exp_reward = exp_reward
+        self._damage = damage
+        self._loot = loot
+        self._exp_reward = exp_reward
         self.is_defeated = False
+
+    @property
+    def damage(self):
+        return self._damage
+    @damage.setter
+    def damage(self, value):
+        self._damage = value
+        if self._damage < 0:
+            self._damage = 0
+
+    @property
+    def loot(self):
+        return self._loot
+    @loot.setter
+    def loot(self, loot):
+        self._loot = loot
+
+    @property
+    def exp_reward(self):
+        return self._exp_reward
+    @exp_reward.setter
+    def exp_reward(self, value):
+        self._exp_reward = value
 
     def status(self):
         print("=== MONSTER ===")
