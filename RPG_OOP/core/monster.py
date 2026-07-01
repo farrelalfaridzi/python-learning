@@ -43,6 +43,7 @@ class Monster(Character):
             if damage_diterima <= 0:
                 damage_diterima = 0
         player.take_damage(damage_diterima)
+        player.add_damage_taken(damage_diterima)
 
     def defeated(self):
         self.is_defeated = True

@@ -11,6 +11,12 @@ class Player(Character):
         self._exp = 0
         self._bonus_damage = 0
         self.is_defeated = False
+        self.monster_defeated = 0
+        self.battle_won = 0
+        self.battle_lost = 0
+        self.damage_dealt = 0
+        self.damage_taken = 0
+        self.potion_used = 0
 
     @property
     def gold(self):
@@ -77,6 +83,12 @@ class Player(Character):
             print("Armor Defense :", self.armor.defense)
         else:
             print("Armor :", None)
+        print(f"Monster defeated : {self.monster_defeated}")
+        print(f"Battle won : {self.battle_won}")
+        print(f"Battle lost : {self.battle_lost}")
+        print(f"Damage dealt : {self.damage_dealt}")
+        print(f"Damage taken : {self.damage_taken}")
+        print(f"Potion used : {self.potion_used}")
 
     def attack(self, monster):
         if self.weapon == None:
@@ -85,6 +97,7 @@ class Player(Character):
             print(f"{self.nama} menyerang!")
             damage_total = self.weapon.damage + self.bonus_damage
             monster.take_damage(damage_total)
+            self.add_damage_dealt(damage_total)
 
     def equip_weapon(self, weapon_baru):
         if self.inventory.has_item(weapon_baru):
@@ -111,6 +124,7 @@ class Player(Character):
             self.heal(potion.heal)
             self.inventory.remove_item(potion)
             print(f"{potion.nama} berhasil diminum")
+            self.add_potion_used()
         else:
             print("potion tidak ada di inventory")
 
@@ -138,3 +152,21 @@ class Player(Character):
 
     def defeated(self):
         self.is_defeated = True
+
+    def add_damage_taken(self, damage):
+        self.damage_taken += damage
+
+    def add_monster_defeated(self):
+        self.monster_defeated += 1
+
+    def add_battle_won(self):
+        self.battle_won += 1
+
+    def add_battle_lost(self):
+        self.battle_lost += 1
+
+    def add_damage_dealt(self, damage):
+        self.damage_dealt += damage
+
+    def add_potion_used(self):
+        self.potion_used += 1

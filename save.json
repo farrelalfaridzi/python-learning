@@ -1,1 +1,1 @@
-{"nama": "Farrel", "hp": 100, "gold": 15, "level": 3, "exp": 50, "bonus_damage": 10, "weapon": "Wood Sword", "armor": "Leather armor"}
+{"nama": "Farrel", "hp": 80, "gold": 15, "level": 5, "exp": 30, "bonus_damage": 20, "weapon": "Wood Sword", "armor": "Leather armor", "monster_defeated": 2, "battle_won": 2, "battle_lost": 0, "damage_taken": 30, "damage_dealt": 280, "potion_used": 1}

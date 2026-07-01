@@ -26,11 +26,14 @@ class Battle:
             self.player_turn()
             if self.monster.hp <= 0:
                 self.show_win()
+                self.player.add_battle_won()
+                self.player.add_monster_defeated()
                 break
             self.monster_turn()
             if self.player.hp <= 0:
                 print("GAME OVER")
                 self.player.defeated()
+                self.player.add_battle_lost()
                 break
             self.show_hp()
 
