@@ -36,7 +36,7 @@ class Game:
         self.orc = Monster("Orc",180,30,self.leather,180)
         self.skeleton = Monster("Skeleton",250,40,self.bow,250)
         self.dragon = Monster("Dragon",500,70,self.iron,700)
-        self.monster = Monsters_menu()
+        self.monster = Monsters_menu(self)
         self.monster.add_monster(self.goblin)
         self.monster.add_monster(self.orc)
         self.monster.add_monster(self.skeleton)
@@ -52,3 +52,7 @@ class Game:
 
     def start(self):
         self.world.start()
+
+    def start_battle(self, monster):
+        battle = Battle(self.player,monster)
+        battle.start()

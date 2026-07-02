@@ -1,8 +1,7 @@
-from game.battle import Battle
-
 class Monsters_menu:
-    def __init__(self):
+    def __init__(self, game):
         self.monsters = []
+        self.game = game
 
     def add_monster(self, monster):
         self.monsters.append(monster)
@@ -40,7 +39,7 @@ class Monsters_menu:
                 monster = self.choose_monster(pilih)
                 if monster is None:
                     print("pilihan tidak valid")
-                battle = Battle(player, monster).start()
+                self.game.start_battle(monster)
                 if monster.is_defeated == True:
                     print(f"{monster.nama} sudah dikalahkan")
 
