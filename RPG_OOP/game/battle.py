@@ -8,13 +8,12 @@ class Battle:
             self.show_menu()
             pilih = input(">> ")
             if pilih == "1":
-                self.player.attack(self.monster)
+                self.handle_attack()
                 break
             elif pilih == "2":
-                self.show_inventory_menu()
+                self.handle_inventory()
             elif pilih == "3":
-                self.player.status()
-                self.monster.status()
+                self.handle_status()
             else:
                 print("Pilihan tidak valid!")
 
@@ -24,35 +23,29 @@ class Battle:
     def start(self):
         while self.player.hp > 0 and self.monster.hp > 0:
             self.player_turn()
-            if self.monster.hp <= 0:
-                self.show_win()
-                self.player.add_battle_won()
-                self.player.add_monster_defeated()
+            if self.check_monster_dead():
                 break
             self.monster_turn()
-            if self.player.hp <= 0:
-                print("GAME OVER")
-                self.player.defeated()
-                self.player.add_battle_lost()
+            if self.check_player_dead():
                 break
             self.show_hp()
 
     def show_hp(self):
-        print("---------------")
+        self.divider()
         print(f"{self.player.nama} HP : {self.player.hp}")
         print(f"{self.monster.nama} HP : {self.monster.hp}")
-        print("---------------")
+        self.divider()
 
     def show_menu(self):
         print("=== PLAYER TURN ===")
         print("1. Attack")
         print("2. Inventory")
         print("3. Status")
-        print("===================")
+        self.divider()
 
     def show_inventory_menu(self):
         while True:
-            if len(self.player.inventory.items) == 0:
+            if not self.player.inventory.items:
                 print("tidak ada item")
                 break
             else:
@@ -75,10 +68,41 @@ class Battle:
         print("#tekan 0 untuk keluar shop")
 
     def show_win(self):
-        print("--------------")
+        self.divider()
         print("YOU WIN!")
         print(f"{self.monster.nama} menjatuhkan {self.monster.loot.nama}")
         self.player.inventory.add_item(self.monster.loot)
         self.player.gain_exp(self.monster.exp_reward)
         self.monster.defeated()
-        print("--------------")
+        self.divider()
+
+    def check_monster_dead(self):
+        if self.monster.hp <= 0:
+            self.show_win()
+            self.player.add_battle_won()
+            self.player.add_monster_defeated()
+            return True
+        else:
+            return False
+
+    def check_player_dead(self):
+        if self.player.hp <= 0:
+            print("GAME OVER")
+            self.player.defeated()
+            self.player.add_battle_lost()
+            return True
+        else:
+            return False
+
+    def handle_attack(self):
+        self.player.attack(self.monster)
+
+    def handle_inventory(self):
+        self.show_inventory_menu()
+
+    def handle_status(self):
+        self.player.status()
+        self.monster.status()
+
+    def divider(self):
+        print("--------------------")
